@@ -20,7 +20,7 @@ export default StyleSheet.create({
     },
     title: {
         fontWeight: 'bold',
-        fontSize: 23,
+        fontSize: 19,
         textAlign: 'center',
         margin: 10,
     },
@@ -85,7 +85,7 @@ export default StyleSheet.create({
     },
     titleSecondary: {
         fontWeight: 'bold',
-        fontSize: 23,
+        fontSize: 19,
         textAlign: 'center',
         margin: 10,
         color: "gray"

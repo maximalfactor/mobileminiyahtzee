@@ -136,6 +136,14 @@ export default function Board({route, navigation}) {
     }
 
     function getSelectedTotal() {
+        var total = selectedPoints.filter(x => x!=-1).reduce((sum, a) => sum + a, 0);
+        if(!total) {
+            total = 0;
+        }
+        return total
+    }
+
+    function getPrintableTotal() {
         var total = selectedPoints.filter(x => x!=-1).reduce((sum, a) => sum + a, 0)
         if (total > constants.bonusPointsLimit) {
             return total + " + " + constants.bonusPoints
@@ -157,7 +165,7 @@ export default function Board({route, navigation}) {
                     </Container>
                     :
                     <MaterialCommunityIcons color={constants.iconColorPrimary} name="dice-multiple-outline"
-                     size={160} style={styles.bigIcon}></MaterialCommunityIcons>
+                     size={140} style={styles.bigIcon}></MaterialCommunityIcons>
                 }
                 <Text style={styles.title}>{status}</Text>
                 <Text style={styles.titleSecondary}>Rolls left: {remainingRolls}</Text>
@@ -173,7 +181,9 @@ export default function Board({route, navigation}) {
                     </Container>
                 </View>
                 
-                <Text style={styles.title} >Total: {getSelectedTotal()}</Text>
+                <Text style={styles.title} >Total: {getPrintableTotal()}</Text>
+                <Text style={styles.titleSecondary}>{constants.bonusPointsLimit - getPrintableTotal() > 0 ?
+                "You are " + (constants.bonusPointsLimit - getSelectedTotal()) + " points away from bonus" : ""}</Text>
             </View>
             <Footer/>
         </View>
